@@ -93,17 +93,17 @@ export default function ExplorePage() {
   const totalPages = Math.min(Math.ceil(totalResults / 12), 8); // GitHub API limit
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1a1a2e]">
+    <div className="min-h-screen bg-[#191120]">
       <Navbar />
       
-      <div className="flex max-w-[1400px] mx-auto px-6 py-8 gap-8">
+      <div className="flex max-w-[1400px] mx-auto px-8 py-10 gap-10">
         {/* Sidebar */}
-        <aside className="w-64 flex-shrink-0">
-          <div className="sticky top-8">
-            <h1 className="text-3xl font-bold text-white mb-2">
+        <aside className="w-72 flex-shrink-0">
+          <div className="sticky top-10">
+            <h1 className="text-4xl font-bold text-white mb-4">
               Explore Projects
             </h1>
-            <p className="text-gray-400 text-sm mb-8">
+            <p className="text-gray-400 text-lg mb-10">
               Discover projects based on your interests.
             </p>
             
@@ -114,17 +114,17 @@ export default function ExplorePage() {
         {/* Main Content */}
         <main className="flex-1">
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className="mb-6">
+          <form onSubmit={handleSearch} className="mb-8">
             <div className="relative">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects..."
-                className="w-full px-4 py-3 pl-12 bg-[#2a2a3e] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 placeholder-gray-500"
+                className="w-full px-6 py-4 pl-14 bg-[#2a2a3e] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 placeholder-gray-500 text-xl"
               />
               <svg
-                className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 transform -translate-y-1/2"
+                className="w-6 h-6 text-gray-500 absolute left-5 top-1/2 transform -translate-y-1/2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -139,21 +139,21 @@ export default function ExplorePage() {
             </div>
           </form>
 
-          <div className="mb-6">
-            <h2 className="text-2xl font-semibold text-white">
+          <div className="mb-8">
+            <h2 className="text-3xl font-semibold text-white">
               Search Results ({totalResults})
             </h2>
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-64 bg-[#2a2a3e] rounded-lg animate-pulse" />
+                <div key={i} className="h-72 bg-[#2a2a3e] rounded-lg animate-pulse" />
               ))}
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project) => (
                   <ProjectCard key={project.id} project={project} />
                 ))}
@@ -161,13 +161,13 @@ export default function ExplorePage() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-8">
+                <div className="flex items-center justify-center gap-3 mt-10">
                   <button
                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                     disabled={currentPage === 1}
-                    className="p-2 rounded bg-[#2a2a3e] text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#3a3a4e] transition-colors"
+                    className="p-3 rounded bg-[#2a2a3e] text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#3a3a4e] transition-colors"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
@@ -188,11 +188,11 @@ export default function ExplorePage() {
                       <button
                         key={i}
                         onClick={() => setCurrentPage(pageNum)}
-                        className={`w-10 h-10 rounded ${
+                        className={`w-12 h-12 rounded ${
                           currentPage === pageNum
                             ? 'bg-purple-600 text-white'
                             : 'bg-[#2a2a3e] text-gray-300 hover:bg-[#3a3a4e]'
-                        } transition-colors`}
+                        } transition-colors text-2xl`}
                       >
                         {pageNum}
                       </button>
@@ -201,10 +201,10 @@ export default function ExplorePage() {
 
                   {totalPages > 5 && currentPage < totalPages - 2 && (
                     <>
-                      <span className="text-gray-400">...</span>
+                      <span className="text-gray-400 text-2xl">...</span>
                       <button
                         onClick={() => setCurrentPage(totalPages)}
-                        className="w-10 h-10 rounded bg-[#2a2a3e] text-gray-300 hover:bg-[#3a3a4e] transition-colors"
+                        className="w-12 h-12 rounded bg-[#2a2a3e] text-gray-300 hover:bg-[#3a3a4e] transition-colors text-2xl"
                       >
                         {totalPages}
                       </button>
@@ -214,9 +214,9 @@ export default function ExplorePage() {
                   <button
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                     disabled={currentPage === totalPages}
-                    className="p-2 rounded bg-[#2a2a3e] text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#3a3a4e] transition-colors"
+                    className="p-3 rounded bg-[#2a2a3e] text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#3a3a4e] transition-colors"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
