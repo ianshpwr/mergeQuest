@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="bg-[#191921] text-white px-10 py-4 flex items-center justify-between font-sans">
+    <nav className="bg-[#191120] text-white px-10 py-4 flex items-center justify-between font-sans border-b-2 border-[#A78BFA]">
       {/* Logo */}
       <div className="text-2xl font-bold">
         <p>LOGO</p>
@@ -23,6 +23,9 @@ export default function Navbar() {
         </Link>
         <Link href="/about" className="hover:underline">
           About
+        </Link>
+        <Link href="/projects" className="hover:underline">
+          Projects
         </Link>
       </div>
 
